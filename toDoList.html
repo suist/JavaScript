@@ -1,0 +1,59 @@
+<body>
+    <h2>My To Do List</h2>
+    <input type="text" id="myInput" placeholder="ex)buy bananas" >
+    <button onclick="newElement()">add</button>
+    <ul id="myUl">
+        <li>buy something</li>
+        <li>go to the gym</li>
+    </ul>
+
+    <script>
+        // x 버튼 만들기
+    var myNodeList = document.getElementsByTagName("li");
+    var i;
+
+    for(i = 0; i<myNodeList.length; i++){
+    
+    var span = document.createElement("span");
+    var txt = document.createTextNode("✔");
+    span.appendChild(txt);
+    span.className ="close";
+    myNodeList[i].appendChild(span);
+
+    }
+
+    // x 버튼 기능 부여.  class.onclick = 
+    var close = document.getElementsByClassName("close");
+    var i ;
+    for(i = 0; i<close.length;i++)
+    close[i].onclick = function(){
+        var div = this.parentElement; // this-> close를 의미? span의 부모 li 부르기
+        div.style.display="none";    // close class의 부모 element -> li 의
+
+    }
+
+
+
+    function newElement(){
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("myInput").value;
+        var t = document.createTextNode(inputValue)
+        li.appendChild(t);
+        document.getElementById("myUl").appendChild(li);
+        document.getElementById("myInput").value = "";
+
+        var span = document.createElement("span");
+        var txt = document.createTextNode("✔");
+        span.className ="close";
+        span.appendChild(txt);
+        li.appendChild(span);
+
+        for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+    }
+    }
+    </script>
+</body>
